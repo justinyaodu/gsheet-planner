@@ -1,4 +1,4 @@
-# Google Sheets Planner
+# Google Sheet Planner
 
 A Google Sheet for keeping track of your events and assignments. Adding, editing, categorizing, and deleting items is as simple as editing the spreadsheet. Your items are **automatically sorted** by date, so you can easily see what's coming up next. For long-term assignments, you can choose to be **reminded in advance**, and even **track your progress**. You can also **export** items to Google Calendar!
 
