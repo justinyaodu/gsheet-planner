@@ -1,6 +1,12 @@
 /**
-* @OnlyCurrentDoc
-*/
+ * Copyright (c) 2020 Justin Yao Du. Licensed under the MIT License.
+ * For more information, please visit:
+ * https://github.com/justinyaodu/gsheet-planner
+ */
+
+/**
+ * @OnlyCurrentDoc
+ */
 
 const PLANNER_SHEET_NAME = "Planner";
 const PLANNER_SORT_START_ROW = 2;
