@@ -53,7 +53,6 @@ function sortPlanner(sheet) {
   const range = sheet.getRange(
     PLANNER_SORT_START_ROW, PLANNER_SORT_START_COL, numRows, numCols);
 
-  // TODO should this be range.getLastColumn()?
   range.sort(sheet.getLastColumn());
 }
 
