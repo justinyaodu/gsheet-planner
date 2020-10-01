@@ -12,6 +12,8 @@ const PLANNER_SHEET_NAME = "Planner";
 const PLANNER_SORT_START_ROW = 2;
 const PLANNER_SORT_START_COL = 3;
 
+const SETTINGS_SHEET_NAME = "Settings";
+
 function onEdit(ev) {
   onEditExpandMacro(ev);
   onEditSortPlanner(ev);
@@ -28,7 +30,7 @@ function onEditExpandMacro(ev) {
         ev.range.setValue(expanded);
       }
     } catch (err) {
-      ev.range.setValue(`Error expanding macro '${text}': ${err}`);
+      ev.range.setValue(`Error expanding macro '${ev.value}': ${err}`);
     }
   }
 }
@@ -38,7 +40,8 @@ function onEditExpandMacro(ev) {
  */
 function onEditSortPlanner(ev) {
   const sheet = SpreadsheetApp.getActiveSheet();
-  if (sheet.getName() === PLANNER_SHEET_NAME) {
+  if (sheet.getName() === PLANNER_SHEET_NAME
+      && namedRangeValue("SettingAutoSort")) {
     sortPlanner(sheet);
   }
 }
@@ -54,6 +57,18 @@ function sortPlanner(sheet) {
     PLANNER_SORT_START_ROW, PLANNER_SORT_START_COL, numRows, numCols);
 
   range.sort(sheet.getLastColumn());
+}
+
+/**
+ * Return the value of the top left cell in a named range.
+ */
+function namedRangeValue(name) {
+  const namedRanges = SpreadsheetApp.getActiveSpreadsheet().getNamedRanges()
+    .filter((namedRange) => namedRange.getName() == name);
+
+  for (const namedRange of namedRanges) {
+    return namedRange.getRange().getValue();
+  }
 }
 
 /**
@@ -78,10 +93,10 @@ function expandMacro(text) {
   if (text.length < 1 || text.charAt(0) !== '!') {
     return null;
   }
-  
+
   const command = text.charAt(1);
   const arg = text.substring(2);
-  
+
   switch (command) {
     case 'w':
       return dateString(nextDayWithWeekday(strictParseInt(arg)));
@@ -90,7 +105,7 @@ function expandMacro(text) {
     case 'f':
       return dateString(daysInFuture(strictParseInt(arg)));
     default:
-      throw `character '${command}' does not correspond to any macro`;
+      throw `command '${command}' not defined`;
   }
 }
 
@@ -109,13 +124,13 @@ function nextDayWithWeekday(weekday) {
   if (weekday < 0 || weekday >= 7) {
     throw `weekday index '${weekday}' out of range`;
   }
-  
+
   const date = new Date();
-  
+
   do {
     date.setDate(date.getDate() + 1);
   } while (date.getDay() != weekday);
-  
+
   return date;
 }
 
