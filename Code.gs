@@ -12,8 +12,6 @@ const PLANNER_SHEET_NAME = "Planner";
 const PLANNER_SORT_START_ROW = 2;
 const PLANNER_SORT_START_COL = 3;
 
-const SETTINGS_SHEET_NAME = "Settings";
-
 function onEdit(ev) {
   onEditExpandMacro(ev);
   onEditSortPlanner(ev);
