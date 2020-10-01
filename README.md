@@ -22,7 +22,7 @@ You can either delete the row, or clear all the cells in a row.
 
 If you will be adding the item back to your planner in the future, you don't need to delete it. Instead, you can type any non-numeric text into the date field, and the item will be sorted to the bottom of the planner. When you are ready, you can replace your placeholder text with the new date.
 
-## Track Progress on Long-Term Assignments
+### Track Progress on Long-Term Assignments
 
 You can use the `Day` and `Of` columns to express your progress as "day _x_ of _y_", where _y_ is the total number of days and _x_ is the number of days you've completed so far. If you put 7 in the `Of` column, indicating that the task takes a week to complete, the assignment will appear a week before its actual due date. Each time you complete a day of work on that assignment, you can add 1 to the `Day` column, and your reminder will be pushed one day later.
 
