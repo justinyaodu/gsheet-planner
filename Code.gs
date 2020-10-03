@@ -108,10 +108,24 @@ function expandMacro(text) {
 }
 
 /**
+ * Return a one or two digit number as a string padded with leading zeroes.
+ */
+function zeroPadTwoDigit(num) {
+  if (num < 10) {
+    return "0" + num.toString();
+  } else {
+    return num.toString();
+  }
+}
+
+/**
  * Format a date as YYYY-MM-DD.
  */
 function dateString(date) {
-  return date.toISOString().substring(0, 10);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return year.toString() + "-" + zeroPadTwoDigit(month) + "-" + zeroPadTwoDigit(day);
 }
 
 /**
