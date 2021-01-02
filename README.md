@@ -55,6 +55,7 @@ You can use macros to quickly enter dates.
 * `!fN` (f for future): gives the date `N` days in the future. `!f1` is tomorrow. `!f-2` is the day before yesterday.
 * `!wN` (w for weekday): gives the next date with the given weekday index. `!w0` is next Sunday, `!w1` is next Monday, ..., `!w6` is next Saturday.
 * `!mN` (m for month): gives the `N`th day of the current month. If today is March 14th, `!m23` is March 23rd.
+* `!dD`, `!dM-D`, `!dY-M-D` (d for date): gives the requested date. If today is March 14th 2021, `!d19` is March 19th 2021, `!d1-19` is January 19th 2021, and `!d24-1-19` is January 19th 2024.
 
 ## Detailed Column Descriptions
 

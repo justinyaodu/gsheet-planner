@@ -76,7 +76,7 @@ function strictParseInt(str) {
   const num = parseInt(str, 10);
 
   if (isNaN(num)) {
-    throw `Not a number: '${str}'`;
+    throw `not a number: '${str}'`;
   }
 
   return num;
@@ -102,9 +102,58 @@ function expandMacro(text) {
       return dateString(dayThisMonth(strictParseInt(arg)));
     case 'f':
       return dateString(daysInFuture(strictParseInt(arg)));
+    case 'd':
+      return dateString(parseDateCommand(arg));
     default:
       throw `command '${command}' not defined`;
   }
+}
+
+/**
+ * Parse a date string, allowing missing parts.
+ */
+function parseDateCommand(str) {
+  const re = /^(\d+)(?:\D+(\d+))?(?:\D+(\d+))?$/;
+
+  const result = re.exec(str);
+
+  if (result === null) {
+    throw `cannot parse '${str}' as date`;
+  }
+
+  // Get the provided date components in reverse order (day, month, year).
+  // This is necessary because the first regex group should be the day of
+  // the month if there is only one component, but it should be the month
+  // if there are two components, etc.
+  const components = result.slice(1).filter(x => x !== undefined);
+  components.reverse();
+
+  const date = new Date();
+
+  const day = strictParseInt(components[0]);
+
+  // Use today's month and year if not provided.
+
+  const month = (components[1] === undefined)
+    ? date.getMonth()
+    : strictParseInt(components[1] - 1);
+
+  const year = (components[2] === undefined)
+    ? date.getFullYear()
+    : yearWithDigits(components[2]);
+
+  date.setFullYear(year, month, day);
+  return date;
+}
+
+/**
+ * Overwrite the last digits of the year number with the provided digits. For
+ * example, if the current year is 2021, "23" (or even "3") will become 2023.
+ */
+function yearWithDigits(digits) {
+  const yearString = (new Date()).getFullYear().toString();
+  const sliceEnd = yearString.length - digits.length;
+  return strictParseInt(yearString.slice(0, sliceEnd) + digits);
 }
 
 /**
