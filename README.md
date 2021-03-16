@@ -36,7 +36,7 @@ Click the `GCal` link in the first column of the `Planner` sheet.
 
 ### Customize the Item Categories
 
-Go to the `Categories` sheet and edit the list of items. Place more important categories above less important ones.
+Go to the `Settings` sheet and edit the list of category names. Place more important categories above less important ones.
 
 ### Customize the Item Category Colors
 
@@ -52,10 +52,9 @@ Edit the conditional formatting rules of the `Category` column on the `Planner` 
 
 You can use macros to quickly enter dates.
 
-* `!fN` (f for future): gives the date `N` days in the future. `!f1` is tomorrow. `!f-2` is the day before yesterday.
-* `!wN` (w for weekday): gives the next date with the given weekday index. `!w0` is next Sunday, `!w1` is next Monday, ..., `!w6` is next Saturday.
-* `!mN` (m for month): gives the `N`th day of the current month. If today is March 14th, `!m23` is March 23rd.
-* `!dD`, `!dM-D`, `!dY-M-D` (d for date): gives the requested date. If today is March 14th 2021, `!d19` is March 19th 2021, `!d1-19` is January 19th 2021, and `!d24-1-19` is January 19th 2024.
+* `fN` (f for future): gives the date `N` days in the future. `f1` is tomorrow. `f-2` is the day before yesterday.
+* `wN` (w for weekday): gives the next date with the given weekday index. `w0` is next Sunday, `w1` is next Monday, ..., `w6` is next Saturday.
+* `dD`, `dM-D`, `dY-M-D` (d for date): gives the requested date. If today is March 14th 2021, `d19` is March 19th 2021, `d1-19` is January 19th 2021, and `d34-1-19` is January 19th 2034.
 
 ## Detailed Column Descriptions
 
